@@ -6,7 +6,5 @@ import org.springframework.web.bind.annotation.*
 class HelloController {
 
     @RequestMapping("/hello")
-    fun sayHello(): String {
-        return "Hello JetConf"
-    }
+    fun sayHello() = "Hello JetConf"
 }
