@@ -16,7 +16,14 @@ class WelcomeController(private val service: WelcomeService) {
 }
 
 class WelcomeService(private val repository: WelcomeRepository) {
-    fun getAll(): Iterable<Welcome> = repository.findAll()
+
+    fun getAll(): Collection<EnhancedWelcome> {
+        var i = 1
+        return repository.findAll()
+            .map { EnhancedWelcome(it, i++) }
+            .sortedBy { it.who }
+    }
+
     fun get(who: String) = repository.findByWho(who)
 }
 
@@ -25,3 +32,8 @@ interface WelcomeRepository : CrudRepository<Welcome, String> {
 }
 
 class Welcome(@Id val who: String, val what: String = "Welcome") : Serializable
+
+class EnhancedWelcome(welcome: Welcome, val index: Int) {
+    val who = welcome.who
+    val what = welcome.what
+}
