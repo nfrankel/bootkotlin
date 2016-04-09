@@ -1,4 +1,4 @@
-package by.jetconf.boot
+package by.jetconf.boot.auto
 
 import org.springframework.web.bind.annotation.*
 
@@ -15,12 +15,3 @@ class GreetingController {
     @RequestMapping("/greet/{who}")
     fun greet(@PathVariable who:String) = "Hello ${who}"
 }
-
-@RestController
-class WelcomeController {
-
-    @RequestMapping("/welcome/{who}")
-    fun welcome(@PathVariable who: String) = Welcome(who)
-}
-
-class Welcome(val who: String, val what: String = "Welcome")

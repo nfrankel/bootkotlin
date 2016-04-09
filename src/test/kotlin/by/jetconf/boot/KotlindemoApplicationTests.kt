@@ -1,5 +1,6 @@
 package by.jetconf.boot
 
+import by.jetconf.boot.auto.KotlindemoApplication
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.boot.test.context.*
