@@ -8,8 +8,12 @@ class WelcomeController(private val service: WelcomeService) {
 
     @RequestMapping("/welcome")
     fun welcome() = service.getAll()
+
+    @RequestMapping("/welcome/{who}")
+    fun welcome(@PathVariable who: String) = service.get(who)
 }
 
 class WelcomeService(private val repository: WelcomeRepository) {
     fun getAll() = repository.findAll()
+    fun get(who: String) = repository.findByWho(who)
 }
