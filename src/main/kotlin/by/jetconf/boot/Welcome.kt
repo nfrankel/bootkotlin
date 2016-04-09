@@ -1,5 +1,6 @@
 package by.jetconf.boot
 
+import by.jetconf.boot.auto.Welcome
 import by.jetconf.boot.auto.WelcomeRepository
 import org.springframework.web.bind.annotation.*
 
@@ -14,6 +15,15 @@ class WelcomeController(private val service: WelcomeService) {
 }
 
 class WelcomeService(private val repository: WelcomeRepository) {
-    fun getAll() = repository.findAll()
+    fun getAll(): Collection<EnhancedWelcome> {
+        var i: Int = 1
+        return repository.findAll().map { EnhancedWelcome(it, i++) }.sortedBy { it.who }
+    }
+
     fun get(who: String) = repository.findByWho(who)
+}
+
+class EnhancedWelcome(private val welcome: Welcome, val index: Int) {
+    val who = welcome.who
+    val what = welcome.what
 }
