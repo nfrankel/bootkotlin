@@ -15,10 +15,7 @@ class WelcomeController(private val service: WelcomeService) {
 }
 
 class WelcomeService(private val repository: WelcomeRepository) {
-    fun getAll(): Collection<EnhancedWelcome> {
-        var i: Int = 1
-        return repository.findAll().map { EnhancedWelcome(it, i++) }.sortedBy { it.who }
-    }
+    fun getAll() = repository.findAll().mapIndexed{ index, welcome -> EnhancedWelcome(welcome, index + 1) }.sortedBy { it.who }
 
     fun get(who: String) = repository.findByWho(who)
 }
