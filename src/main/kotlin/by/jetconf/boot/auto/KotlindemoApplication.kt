@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.*
 import org.springframework.context.annotation.*
 
 @SpringBootApplication
-open class KotlindemoApplication {
+class KotlindemoApplication {
 
     @Bean
-    open fun controller(repository: WelcomeRepository) = WelcomeController(WelcomeService(repository))
+    fun controller(repository: WelcomeRepository) = WelcomeController(WelcomeService(repository))
 }
 
 fun main(args: Array<String>) {
