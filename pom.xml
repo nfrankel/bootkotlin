@@ -53,7 +53,19 @@
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <version>${kotlin.version}</version>
-                <executions>
+				<configuration>
+					<compilerPlugins>
+                        <plugin>spring</plugin>
+					</compilerPlugins>
+				</configuration>
+				<dependencies>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-allopen</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                </dependencies>
+				<executions>
                     <execution>
                         <phase>compile</phase>
                         <goals>

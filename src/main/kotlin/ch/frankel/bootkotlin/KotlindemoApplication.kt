@@ -8,13 +8,13 @@ import org.springframework.data.hazelcast.repository.config.EnableHazelcastRepos
 
 @SpringBootApplication
 @EnableHazelcastRepositories
-open class KotlindemoApplication {
+class KotlindemoApplication {
 
     @Bean
-    open fun service(repository: WelcomeRepository) = WelcomeService(repository)
+    fun service(repository: WelcomeRepository) = WelcomeService(repository)
 
     @Bean
-    open fun initialize(repository: WelcomeRepository) = CommandLineRunner {
+    fun initialize(repository: WelcomeRepository) = CommandLineRunner {
         repository.saveAll(
             listOf(
                 Welcome("Joe", "Hello"),
