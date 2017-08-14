@@ -1,18 +1,16 @@
 package by.jetconf.boot.auto
 
-import by.jetconf.boot.WelcomeController
-import by.jetconf.boot.WelcomeService
+import by.jetconf.boot.beans
+import org.springframework.beans.factory.annotation.*
 import org.springframework.boot.*
 import org.springframework.boot.autoconfigure.*
-import org.springframework.context.annotation.*
+import org.springframework.context.support.*
 
 @SpringBootApplication
-class KotlindemoApplication {
-
-    @Bean
-    fun controller(repository: WelcomeRepository) = WelcomeController(WelcomeService(repository))
-}
+class KotlindemoApplication
 
 fun main(args: Array<String>) {
-    SpringApplication.run(KotlindemoApplication::class.java, *args)
+    runApplication<KotlindemoApplication>(*args) {
+        addInitializers(beans())
+    }
 }
